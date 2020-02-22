@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>query</title>
+</head>
+<body style="background-color: lightgreen;text-align: center;font-weight: bolder" >
+
+    <label style="font-size: 30px" >变更查询结果</label>
+    <div align="center" class="show_query" style="margin-top: 50px">
+        <table class="table" width="70%" style="font-size: 14pt;border-collapse:separate; border-spacing:0px 10px">
+            <tr style="text-align: center" >
+                <td>最新变更记录：</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">班号</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">校区名称</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">年级</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">科目</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">班型</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">老师</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">区间</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">上课时段</td>
+                <td style="border: 1px solid #dddddd;border-radius: 5px;border-color: indianred">变更时间</td>
+            </tr>
+            <tr style="text-align: center">
+                <td></td>
+                <td>{{ items.class_code_c }}</td>
+                {% ifequal items.area_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.area_c }}</td>
+                {% else %}
+                    <td>{{ items.area_c }}</td>
+                {% endifequal %}
+
+                {% ifequal items.grade_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.grade_c }}</td>
+                {% else %}
+                    <td>{{ items.grade_c }}</td>
+                {% endifequal %}
+
+                {% ifequal items.course_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.course_c }}</td>
+                {% else %}
+                    <td>{{ items.course_c }}</td>
+                {% endifequal %}
+
+                {% ifequal items.class_type_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.class_type_c }}</td>
+                {% else %}
+                    <td>{{ items.class_type_c }}</td>
+                {% endifequal %}
+
+                {% ifequal items.teacher_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.teacher_c }}</td>
+                {% else %}
+                    <td>{{ items.teacher_c }}</td>
+                {% endifequal %}
+
+                {% ifequal items.period_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.period_c }}</td>
+                {% else %}
+                    <td>{{ items.period_c }}</td>
+                {% endifequal %}
+                {% ifequal items.time_c_YN 'Y'  %}
+                    <td style="background-color: indianred">{{ items.time_c }}</td>
+                {% else %}
+                    <td>{{ items.time_c }}</td>
+                {% endifequal %}
+                <td>{{ items.posted }}</td>
+            </tr>
+
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+
+            <tr style="text-align: center">
+                <td>原始系统记录：</td>
+                <td >{{ items_origin.class_code }}</td>
+                <td>{{ items_origin.area }}</td>
+                <td>{{ items_origin.grade }}</td>
+                <td>{{ items_origin.course }}</td>
+                <td>{{ items_origin.class_type }}</td>
+                <td>{{ items_origin.teacher }}</td>
+                <td>{{ items_origin.period }}</td>
+                <td>{{ items_origin.time }}</td>
+            </tr>
+        </table>
+        <form action="export"><button>导出</button></form>
+
+    </div>
+
+
+</body>
+</html>

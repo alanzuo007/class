@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级信息变更</title>
+</head>
+<body style="background-color: black">
+    <div align="center">
+        <label style="font-weight: bold;color: #45bda6;font-size: 50px">班 级 信 息 变 更</label>
+    </div>
+    <div  style="height: 100%;width: 200px;position: fixed;background: #393D49;border: #45bda6">
+        <div class="layui_side1" style="border: 10px" >
+            <form  action="toload" method="post">
+                {% csrf_token %}
+                <label style=";color: #45bda6;font-size: 30px;font-weight: bold">班级编码</label>
+                <div style="height: 40px"><input  type="text" name="class_code" value={{ class_code }} ></div>
+                <div style="height: 50px"><input type="submit" value="源始查询" name="search"></div>
+            </form>
+        </div>
+        <div class="layui_side2" style="border: 10px">
+            <form action="toquery" method="post" style="color: #45bda6">
+                {% csrf_token %}
+                <div style="height: 40px"><input  type="text" name="class_code" value={{ class_code }} ></div>
+                <div style="height: 50px"><input type="submit" value="修改查询" name="query"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="class_infos" align="center" style="display: {{show}};color: #45bda6;font-weight: bolder">
+        <form action="tosubmit" method="post">
+            {% csrf_token %}
+
+            <div class="area" style="column-count: 2">
+                <label>校 区</label>
+                <div class="area_l" style="border: 1px"><input name="area_l" style="background-color: lightgreen;; font-size: 25px;width:150px;height:35px;text-align: center"  type="text" value={{item.area}}></div>
+                <label>校区-变更</label>
+                <div class="area_r" style="border: 1px"><input name="area_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text"></div>
+            </div>
+            <br>
+            <div class="grade" style="column-count: 2">
+                <label>年 级</label>
+                <div class="grade_l" style="border: 1px"><input name="grade_l" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text" value={{item.grade}}></div>
+                <label>年级-变更</label>
+                <div class="grade_r" style="border: 1px"><input name="grade_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text"></div>
+            </div>
+            <br>
+            <div class="course" style="column-count: 2">
+                <label>科 目</label>
+                <div class="course_l" style="border: 1px"><input name="course_l"  style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text" value={{item.course}}></div>
+                <label>科目-变更</label>
+                <div class="course_r" style="border: 1px"><input name="course_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text"></div>
+            </div>
+            <br>
+            <div class="classtype" style="column-count: 2">
+                <label>班 型</label>
+                <div class="classtype_l" style="border: 1px"><input name="classtype_l" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text" value={{item.class_type}}></div>
+                <label>班型-变更</label>
+                <div class="classtype_r" style="border: 1px"><input name="classtype_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text"></div>
+            </div>
+            <br>
+            <div class="teacher" style="column-count: 2">
+                <label>老 师</label>
+                <div class="teacher_l" style="border: 1px;font-size: larger"><input name="teacher_l" style="background-color: lightgreen;font-size: 25px; width:150px;height:35px;text-align: center"  type="text" value={{item.teacher}}></div>
+                <label>老师-变更</label>
+                <div class="teacher_r" style="border: 1px"><input name="teacher_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text"></div>
+            </div>
+            <br>
+            <div class="period" style="column-count: 2">
+                <label>区 间</label>
+                <div class="period_l" style="border: 1px"><input name="period_l" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text" value={{item.period}}></div>
+                <label>区间-变更</label>
+                <div class="period_r">
+                    <select name="period_r" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;">
+                         {% for choice in choices_period %}
+                            <option >{{ choice }}</option>
+                         {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="time" style="column-count: 2">
+                <label>时 段</label>
+                <div class="time_l" style="border: 1px"><input name="time_l" style="background-color: lightgreen;font-size: 25px;width:150px;height:35px;text-align: center" type="text" value={{item.time}}></div>
+                <label>时段-变更</label>
+                <div class="time_r" style="column-count: 1">
+                    <select name="time_r" style="background-color: lightgreen;font-size: 25px;width:90px;height:35px;">
+                         {% for time1 in choices_time %}
+                            <option >{{ time1 }}</option>
+                         {% endfor %}
+                    </select>
+                    <select name="time_r2" style="background-color: lightgreen;font-size: 25px;width:90px;height:35px;">
+                         {% for time1 in choices_time %}
+                            <option >{{ time1 }}</option>
+                         {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div><input type="submit" value="变更提交" name="submit"></div>
+        </form>
+    </div>
+    {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+    {% endif %}
+
+</body>
+</html>
